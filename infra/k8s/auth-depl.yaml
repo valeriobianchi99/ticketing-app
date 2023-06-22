@@ -11,3 +11,20 @@ spec:
     metadata: 
       labels:
         app: auth
+    spec:
+      containers:
+        - name: auth
+          image: valeriobianchi/auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-serv
+spec:
+  selector: 
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
