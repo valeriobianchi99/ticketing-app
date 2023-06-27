@@ -6,4 +6,4 @@ router.get('/api/users/signout', (req, res) => {
     res.send('Hi there!')
 });
 
-export { router as signoutouter };
+export { router as signoutRouter };
