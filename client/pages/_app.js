@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import buidClient from '../api/buid-client';
+import CustomHeader from '../components/custom-header';
 
 const AppComponent = ({ Component, pageProps, currentUser}) => {
     return <React.Fragment>
-        <Header></Header>
+        <CustomHeader currentUser={currentUser}></CustomHeader>
         <Component {...pageProps} />
     </React.Fragment>
      
