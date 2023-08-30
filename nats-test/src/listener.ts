@@ -13,7 +13,14 @@ const stan = nats.connect(
 
 stan.on('connect', () => {
     console.log('Listener connected to NATS');
-    const subscription = stan.subscribe('ticket:created');
+    const options = stan
+    .subscriptionOptions()
+    .setManualAckMode(true);
+    const subscription = stan.subscribe(
+        'ticket:created', 
+        'orders-service-queue-group',
+        options
+    );
     subscription.on('message', (msg: Message) => {
         const data = msg.getData();
         if (typeof data === 'string') {
@@ -22,5 +29,6 @@ stan.on('connect', () => {
         else {
             console.error('Wrong message format');
         }
+        msg.ack();
     })
 });
