@@ -1,6 +1,7 @@
 export interface TicketEventData {
-    id: string;
-    title: string;
-    price: number;
-    userId: string;
+  id: string;
+  version: number;
+  title: string;
+  price: number;
+  userId: string;
 }
