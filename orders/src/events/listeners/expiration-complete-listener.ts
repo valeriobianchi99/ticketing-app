@@ -17,12 +17,13 @@ export class ExpirationCompleteListener extends Listener<ExpirationCompleteEvent
             status: OrderStatus.Cancelled
         });
         await order.save();
-        new OrderCancelledPublisher(natsWrapper.client).publish({
+        await new OrderCancelledPublisher(natsWrapper.client).publish({
             id: order.id,
             version: order.version,
             ticket: {
                 id: order.ticket.id
             }
         });
+        msg.ack();
     }
 }
