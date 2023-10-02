@@ -6,16 +6,17 @@ import CustomHeader from '../components/custom-header';
 const AppComponent = ({ Component, pageProps, currentUser}) => {
     return <React.Fragment>
         <CustomHeader currentUser={currentUser}></CustomHeader>
-        <Component {...pageProps} />
+        <Component currentUser={currentUser} {...pageProps} />
     </React.Fragment>
      
 }
 
 AppComponent.getInitialProps = async (appContext) =>{
-    const { data } = await buidClient(appContext.ctx).get('/api/users/currentuser');
+    const client = buidClient(appContext.ctx);
+    const { data } = await client.get('/api/users/currentuser');
     let pageProps = {}
     if(appContext.Component.getInitialProps) {
-        pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+        pageProps = await appContext.Component.getInitialProps(appContext.ctx, client, data.currentUser);
     }
     return {
         pageProps,
