@@ -6,7 +6,9 @@ import CustomHeader from '../components/custom-header';
 const AppComponent = ({ Component, pageProps, currentUser}) => {
     return <React.Fragment>
         <CustomHeader currentUser={currentUser}></CustomHeader>
-        <Component currentUser={currentUser} {...pageProps} />
+        <div className='container'>
+            <Component currentUser={currentUser} {...pageProps} />
+        </div>
     </React.Fragment>
      
 }
