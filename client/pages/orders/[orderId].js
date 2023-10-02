@@ -14,6 +14,9 @@ const OrderShow = ({ order }) => {
             clearInterval(timerId)
         }
     }, [order])
+    if(timeLeft<0){
+        return <div>Order expired</div>
+    }
     return (
         <div>{timeLeft} seconds until order expires</div>
     )
