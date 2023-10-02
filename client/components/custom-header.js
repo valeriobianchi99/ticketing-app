@@ -5,7 +5,8 @@ const CustomHeader = ({ currentUser }) => {
     const links = [
         !currentUser && { label: 'Sign up', href: '/auth/signup' },
         !currentUser && { label: 'Sign in', href: '/auth/signin' },
-        currentUser && { label: 'Sign out', href: '/auth/signout' }
+        currentUser && { label: 'Sell tickets', href: '/tickets/new' },
+        currentUser && { label: 'My Orders', href: '/orders' }
     ].filter(
         linkConfig => !!linkConfig
     ).map(
